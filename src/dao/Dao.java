@@ -15,11 +15,11 @@ public class Dao {
 		super();
 	}
 
-	public Connection connect() throws Exception{	
+	public Connection connect() throws Exception{
 		String JDBCDriver = "org.mariadb.jdbc.Driver";
-		String url = "jdbc:mariadb://<mariadb server IP:Port>";
+		String url = "jdbc:mariadb://<mariadb-server>";
 		Class.forName(JDBCDriver);
-		con = DriverManager.getConnection(url,"<User>", "<password>");
+		con = DriverManager.getConnection(url,"<mariadb_UserName>", "<mariadb_User_password>");
 		return con;
 	}
 
@@ -28,4 +28,12 @@ public class Dao {
 			con.close();
 		}
 	}
+
+	public java.sql.Date sqlCurrentDate(){
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		return sqlDate;
+	}
+
+
 }

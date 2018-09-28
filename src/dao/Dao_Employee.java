@@ -100,8 +100,7 @@ public class Dao_Employee extends Dao{
 				prepStmt.setInt(3, employee.getUser_id());			
 				prepStmt.executeQuery();
 				con.close();			
-			} catch (Exception e) {
-				System.out.println("DC_Employee1_update");
+			} catch (Exception e) {				
 				return returnValue=false;			
 			}
 		}else {
@@ -115,8 +114,7 @@ public class Dao_Employee extends Dao{
 				prepStmt.setInt(4, employee.getUser_id());
 				prepStmt.executeQuery();
 				con.close();			
-			} catch (Exception e) {
-				System.out.println("DC_Employee2_update");
+			} catch (Exception e) {				
 				return returnValue=false;			
 			}
 		}		
@@ -149,14 +147,13 @@ public class Dao_Employee extends Dao{
 						}						
 					}
 				}			
-			} catch (Exception e) {
-				System.out.println("virhe");
+			}catch (Exception e) {				
 				e.printStackTrace();
 			}						
 		}else {
 			sql="SELECT u.User_id, u.Email, u.Phone, e.First_name, e.Last_name, e.Business_unit_id, b.Name "
 					+ "FROM DM_Users as u CROSS JOIN DM_Employees AS e ON u.User_id=e.Employee_id CROSS JOIN DM_Business_units AS b on e.Business_unit_id=b.Business_unit_id "
-					+ "WHERE u.In_use=1 AND u.Email Like ? AND u.Phone LIKE ? AND e.First_name LIKE ? AND e.Last_Name LIKE ? AND b.Name LIKE ?";
+					+ "WHERE u.In_use=1 AND u.Email LIKE ? AND u.Phone LIKE ? AND e.First_name LIKE ? AND e.Last_Name LIKE ? AND b.Name LIKE ?";
 			try {
 				con=connect();
 				if(con!=null) {
@@ -168,20 +165,19 @@ public class Dao_Employee extends Dao{
 					prepStmt.setString(5, "%"+employee.getBusiness_unit()+"%");				
 					rs=prepStmt.executeQuery();
 					if(rs!=null) {
+						con.close();
 						Employee emp = new Employee();
-						emp.setUser_id(rs.getInt("User_id"));
-						emp.setEmail(rs.getString("Email"));
-						emp.setPhone(rs.getString("Phone"));
-						emp.setFirst_name(rs.getString("First_name"));
-						emp.setLast_name(rs.getString("Last_name"));
-						emp.setBusiness_unit_id(rs.getInt("Business_unit_id"));
-						emp.setBusiness_unit(rs.getString("Name"));
+						emp.setUser_id(rs.getInt("u.User_id"));
+						emp.setEmail(rs.getString("u.Email"));
+						emp.setPhone(rs.getString("u.Phone"));
+						emp.setFirst_name(rs.getString("e.First_name"));
+						emp.setLast_name(rs.getString("e.Last_name"));
+						emp.setBusiness_unit_id(rs.getInt("e.Business_unit_id"));
+						emp.setBusiness_unit(rs.getString("b.Name"));
 						employeeList.add(emp);
 					}
-				}
-			con.close();
-			} catch (Exception e) {
-				System.out.println("virhe2");
+				}			
+			} catch (Exception e) {				
 				e.printStackTrace();
 			}			
 		}		

@@ -1,17 +1,15 @@
 package test;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import dao.Dao_Business_unit;
-import dao.Dao_Employee;
 import model.Business_unit;
-import model.Employee;
 
 public class Sandbox {
 
 	public static void main(String[] args) {
+		
+		//test
 		/*Employee emp = new Employee();
 		emp.setEmail("2test@test.com2");
 		emp.setPhone("2786504012345672");
@@ -46,12 +44,24 @@ public class Sandbox {
 		Employee emp = new Employee();
 		emp.setEmail(koe);
 		System.out.println(emp.getEmail());
-		*/
+		
 		
 		Dao_Employee dao = new Dao_Employee();
 		Employee emp = new Employee();		
 		List<Employee> empkoe = dao.searchEmployee(emp);
 		System.out.println(empkoe.size());
+		
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		System.out.println(sqlDate);
+
+		Dao dao = new Dao();
+		System.out.println(dao.sqlCurrentDate());
+		*/
+		Business_unit bu = new Business_unit();
+		Dao_Business_unit dao = new Dao_Business_unit();
+		List<Business_unit> buList = dao.searchBusiness_unit(bu);
+		System.out.println(buList);
 		
 		
 		

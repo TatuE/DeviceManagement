@@ -4,26 +4,24 @@ import java.sql.Date;
 
 public class Device {
 	private int device_id, model_id;
-	private String model_name, model_number, brand_name, device_type, features;
-	private Double acquisition_price;
-	private Date Acquisition_date, retirement;
+	private String model_name, model_number, brand_name, device_type, features, device_info;	
+	private Date acquisition_date, retirement;
 	
 	public Device() {
 		super();
 		
 	}
 
-	public Device(int model_id, String model_number, String features, Double acquisition_price, Date acquisition_date) {
+	public Device(int model_id, String model_number, Date acquisition_date, String device_info) {
 		super();
 		this.model_id = model_id;
-		this.model_number = model_number;
-		this.features = features;
-		this.acquisition_price = acquisition_price;
-		Acquisition_date = acquisition_date;
+		this.model_number = model_number;		
+		this.acquisition_date = acquisition_date;
+		this.device_info = device_info;
 	}
 
 	public Device(int device_id, int model_id, String model_name, String model_number, String brand_name,
-			String device_type, String features, Double acquisition_price, Date acquisition_date, Date retirement) {
+			String device_type, String features, Date acquisition_date, String device_features, String device_info) {
 		super();
 		this.device_id = device_id;
 		this.model_id = model_id;
@@ -31,10 +29,9 @@ public class Device {
 		this.model_number = model_number;
 		this.brand_name = brand_name;
 		this.device_type = device_type;
-		this.features = features;
-		this.acquisition_price = acquisition_price;
-		Acquisition_date = acquisition_date;
-		this.retirement = retirement;
+		this.features = features;		
+		this.acquisition_date = acquisition_date;
+		this.device_info = device_info;
 	}
 
 	public int getDevice_id() {
@@ -93,20 +90,20 @@ public class Device {
 		this.features = features;
 	}
 
-	public Double getAcquisition_price() {
-		return acquisition_price;
+	public String getDevice_info() {
+		return device_info;
 	}
 
-	public void setAcquisition_price(Double acquisition_price) {
-		this.acquisition_price = acquisition_price;
+	public void setDevice_info(String device_info) {
+		this.device_info = device_info;
 	}
 
 	public Date getAcquisition_date() {
-		return Acquisition_date;
+		return acquisition_date;
 	}
 
 	public void setAcquisition_date(Date acquisition_date) {
-		Acquisition_date = acquisition_date;
+		this.acquisition_date = acquisition_date;
 	}
 
 	public Date getRetirement() {
@@ -121,7 +118,7 @@ public class Device {
 	public String toString() {
 		return "Device [device_id=" + device_id + ", model_id=" + model_id + ", model_name=" + model_name
 				+ ", model_number=" + model_number + ", brand_name=" + brand_name + ", device_type=" + device_type
-				+ ", features=" + features + ", acquisition_price=" + acquisition_price + ", Acquisition_date="
-				+ Acquisition_date + ", retirement=" + retirement + "]";
-	}
+				+ ", features=" + features + ", device_info=" + device_info + ", acquisition_date=" + acquisition_date
+				+ ", retirement=" + retirement + "]";
+	}	
 }
